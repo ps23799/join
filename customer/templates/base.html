@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+    <!-- title -->
+    <title> {% block title %} {% endblock title %} - cms</title>
+</head>
+
+<!-- style="background-image: url('static/image/bg.jpg');" -->
+
+<body>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light w-100" style="background-color: rgb(173, 174, 230); ">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <b>CMS</b>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#home">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#feedback">Feedback</a>
+                    </li>
+
+
+                    {% if session['name'] %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#compliant">Compliant</a>
+                    </li>
+                    <li class="nav-item">
+                        <!-- Button trigger modal -->
+                        <a class="nav-link" data-bs-toggle="modal" data-bs-target="#exampleModalToggle" href="#profile">
+                            profile  
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="transaction">transaction</a>
+                    </li>
+                    {% endif %}
+                </ul>
+
+
+
+                <!-- login logout button -->
+                {% if session['name'] %}
+                <a class="btn btn-outline-primary me-2" href="logout">logout</a> {% else %}
+
+                <div class="btn-group" style="margin-right: 6%;">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">login</button>
+                    <ul class="dropdown-menu me-5">
+                        <li>
+                            <!-- <a class="dropdown-item" href="login">User Login</a> -->
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="courier_boy/courier_boy_login">courier_boy Login</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="branch/branch_login">Branch Login</a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="admin/admin_login">Admin</a>
+                        </li>
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <!-- body block -->
+    {% block body %} {% endblock body %}
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer ">
+        <div class="container-fluid bg-dark text-white">
+            <div class="row justify-content-center">
+                <div class="col-xl-10">
+                    <div class="row">
+                        <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
+                        &copy;copyright
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- End Footer -->
+</body>
+
+</html>

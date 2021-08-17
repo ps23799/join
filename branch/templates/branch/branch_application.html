@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>application</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bgimg.css') }}">
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript">
+        function a(event) {
+            var ch = event.which;
+            if (ch > 31 && ch != 32 && (ch < 65 || ch > 90 ) && (ch < 97 || ch > 122 )){
+                return false;
+            }  
+        }
+    </script>
+   
+</head>
+
+<body class="my_img" style="background-image: url('../../static/image/office.jpg');">
+    <div class=" container ">
+        <div class="row ">
+            <div class="col-md-5 ">
+                <br> {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+                <div class="alert alert-success alert-dismissible fade show " role="alert ">
+                    {{ message }}
+                    <!-- <button type="button " class="close " data-dismiss="alert " aria-label="Close "> -->
+                    <!-- <span aria-hidden="true ">&times;</span> -->
+                    </button>
+                </div>
+                {% endfor %} {% endif %} {% endwith %}
+                <div class="row justify-content-md-center my-5 " style="justify-content:center; ">
+                    <div class="card card-body ">
+                        <center> <b> BRANCH APPLICATION </b></center>
+                        <HR>
+                        <form action="branch/branch_application" method="POST" class="row g-3 ">
+
+                            <div class="col-md-6 ">
+                                <label for="inputEmail4 " class="form-label ">First name <span style="color: red;">*</span></label>
+                                <input type="text " class="form-control " placeholder="First name " aria-label="First name " name="first_name" required onkeypress="return a(event);">
+                            </div>
+                            <div class="col-md-6 ">
+                                <label for="inputEmail4 " class="form-label ">Last name <span style="color: red;">*</span></label>
+
+                                <input type="text " class="form-control " placeholder="Last name " aria-label="Last name " name="last_name" required onkeypress="return a(event);">
+                            </div>
+
+                            <div class="col-md-6 ">
+                                <label for="inputEmail4 " class="form-label ">Email <span style="color: red;">*</span></label>
+                                <input type="email" class="form-control " id="inputEmail4 " required placeholder="Example@gmail.com " name="email" >
+                            </div>
+                            <div class="col-md-6 ">
+                                <label for="inputPassword4 " class="form-label ">Phone number <span style="color: red;">*</span></label>
+                                <input type="text " class="form-control " id="inputPassword4 " placeholder="1234567890 " name="phone" required maxlength="10" minlength="10" aria-colspan="2" onkeypress="return event.charCode>=48 && event.charCode<=57">
+                              
+                            </div>
+                            <div class="col-12 ">
+                                <label for="inputAddress " class="form-label ">Address <span style="color: red;">*</span></label>
+                                <input type="text " class="form-control " id="inputAddress " placeholder="1234 Main St " name="address" required>
+                            </div>
+                            <div class="col-12 ">
+                                <label for="inputAddress2 " class="form-label ">Address 2 <span style="color: red;">*</span></label>
+                                <input type="text " class="form-control " id="inputAddress2 " placeholder="Apartment, studio, or floor " name="address2" required>
+                            </div>
+                            <div class="col-md-4 ">
+                                <label for="inputState " class="form-label ">City </label>
+                                <select id="inputState " class="form-select " name="city" >
+                                <option selected>Bangalore</option>
+                                <option>Ramanagara</option>
+                                <option>Mysuru</option>
+                                <option>Hasana</option>
+                                <option>Managore</option>
+                                <option>Udupi</option>
+                                <option>Kundapura</option>
+                              </select>
+                            </div>
+                            <div class="col-md-4 ">
+                                <label for="inputState " class="form-label ">State</label>
+                                <select id="inputState " class="form-select " name="state">
+                                <option selected>Karnataka</option>
+                                <option>Kerala</option>
+                                <option>Goa</option>
+                              </select>
+                            </div>
+                            <div class="col-md-4 ">
+                                <label for="inputZip " class="form-label ">Zip code</label>
+                                <input type="text " class="form-control " id="inputZip " placeholder="230799" name="zip" minlength="6" maxlength="6" onkeypress="return event.charCode>=48 && event.charCode<=57">
+                            </div>
+
+                            <div class="col-12 ">
+                                <center>
+                                    <button type="submit " class="btn btn-primary ">Apply</button>
+
+                                </center>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <a class="btn btn-primary" href="/">back to home page</a>
+                <br><br>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,307 @@
+{% extends 'base.html' %} {% block title %} Home{% endblock title %} {% block body %}
+<br id="home"><br> {% if session['name'] %} {% else %}
+<!-- hero page -->
+<div class="row bg-dark">
+    <div class="col-8">
+        <div class="container text-white">
+            <h1>
+                <br>
+                <br>
+                <br> Welcome to Courier Management System
+
+            </h1>
+            <p> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi, reiciendis magnam! Ducimus atque delectus nulla temporibus molestias? Perferendis eligendi quasi fuga blanditiis, adipisci facilis temporibus quis, quia deserunt ad iure.</p>
+        </div>
+    </div>
+    <div class="col-4"> <br>
+        <div class="d-flex justify-content-center">
+            <br> {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+            <div class="alert alert-danger d-flex align-items-center alert-dismissible fade show w-75 p-3" role="alert">
+                <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                    <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                      <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                    </symbol>
+                  </svg>
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg> {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %} {% endif %} {% endwith %}
+        </div>
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-9 ">
+                <div class="card ">
+                    <div class="card-body">
+                        <h5 class="card-title d-flex justify-content-center">Customer login</h5>
+                        <form action="/login" method="POST">
+                            <div class=" form-group ">
+                                <label>Email:</label>
+                                <input type="email" class="form-control " name="email" required>
+                            </div>
+                            <br>
+                            <div class="form-group ">
+                                <label>Password:</label>
+                                <input type="password" class="form-control " name="password">
+                                <a style="float: right;" href="reset_request">forgot password</a>
+
+                            </div>
+                            <br>
+                            <div class="form-group ">
+                                <button class="btn btn-primary ">Login</button>
+                            </div>
+                        </form>
+                        <br> i don't have a account. <a href="register">create account</a>
+                    </div>
+                </div>
+                <br><br>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+<!-- end hero page -->
+
+<!-- search bar -->
+<div class="container-fluid bg-light vh-100 vw-100">
+    <div class="col"> <br>
+        <div class="d-flex justify-content-center">
+            {% if session['name'] %}
+            <br> {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+            <div class="alert alert-primary d-flex align-items-center alert-dismissible fade show w-75 p-3" role="alert">
+                <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                    <!-- <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                      <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                    </symbol> -->
+                  </svg>
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg> {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %} {% endif %} {% endwith %} {% endif %}
+        </div>
+    </div>
+    <div class="col">
+        <br>
+        <br>
+        <div class="row">
+            <center>
+                <h1 style="color:rgb(93, 154, 235)">{% if session['name'] %} Welcome to Courier Tracking System, {{ session['name'] }} {% else %} {% endif %}
+                </h1>
+            </center>
+
+        </div>
+        <form class="d-flex justify-content-center">
+            <input class="form-control me-2 d-flex justify-content-center" style="width:50%;" type="search" placeholder="Enter your Tracking id" aria-label="Search">
+            <button class="btn btn-outline-primary me-2" type="search">search</button>
+        </form>
+    </div>
+</div>
+<!-- end search bar -->
+
+<!-- Button trigger modal -->
+<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="exampleModalToggleLabel">Profile</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <fieldset disabled>
+                        <div class="mb-3">
+                            <label for="disabledTextInput" class="form-label">Name</label>
+                            <input type="text" id="disabledTextInput" class="form-control" placeholder={{ session[ 'name'] }}>
+                        </div>
+                        <div class="mb-3">
+                            <label for="disabledTextInput" class="form-label">Email</label>
+                            <input type="email" id="disabledTextInput" class="form-control" placeholder={{ session[ 'email'] }}>
+                        </div>
+                        <div class="mb-3">
+                            <label for="disabledTextInput" class="form-label">Password</label>
+                            <input type="password" id="disabledTextInput" class="form-control" placeholder='********'>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Edit</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalToggleLabel2">Update Your Information</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/profile" method="POST">
+                    <!-- <a href="#" class="close"></a> -->
+                    <div class="form-group">
+                        <label>Name: <span style="color: red;">*</span></label>
+                        <input type="text" class="form-control" name="name" value={{ session[ 'name'] }} onkeypress="return a(event);">
+                    </div><br>
+
+                    <!--    onkeypress="return event.charCode>=48 && event.charCode<=57" -->
+
+                    <div class="form-group">
+                        <label>Email: <span style="color: red;">*</span></label>
+                        <input type="email" class="form-control" name="email" required value={{ session[ 'email'] }}>
+                    </div><br>
+
+                    <div class="form-group">
+                        <button>save</button>
+                    </div>
+
+                    <div class="form-group">
+                        <a class="nav-link" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" data-bs-dismiss="modal" href="#">change password</a>
+                    </div>
+
+                </form>
+            </div>
+            <div class="form-group modal-footer">
+                <button class="btn btn-primary" data-bs-target="#logout" data-bs-toggle="modal" data-bs-dismiss="modal">back</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModalToggle3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalToggleLabel2">Update Your Information</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/change_password" method="POST">
+
+                    <div class="form-group">
+                        <label>old password: <span style="color: red;">*</span></label>
+                        <input type="text" class="form-control" name="old_password">
+                    </div><br>
+
+                    <div class="form-group">
+                        <label>new password: <span style="color: red;">*</span></label>
+                        <input type="text" class="form-control" name="new_password" required>
+                    </div>
+                    <br>
+
+                    <div class="form-group">
+                        <button>save</button>
+                    </div>
+
+                </form>
+            </div>
+            <div class="form-group modal-footer">
+                <button class="btn btn-primary" data-bs-target="#logout" data-bs-toggle="modal" data-bs-dismiss="modal">back</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--End modal-->
+
+<!-- ======= About Us Section ======= -->
+<div class="col bg-secondary vh-100 vw-100">
+    <div class="row">
+        <div class="container">
+            <br id="about"><br>
+            <section id="about" class="about">
+                <div class="container">
+                    <div class="section-title" data-aos="fade-up">
+                        <h2>About Us</h2>
+                    </div>
+
+                    <div class="row content">
+                        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="150">
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            </p>
+                            <ul>
+                                <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat</li>
+                                <li><i class="ri-check-double-line"></i> Duis aute irure dolor in reprehenderit in voluptate velit</li>
+                                <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat</li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-6 pt-4 pt-lg-0" data-aos="fade-up" data-aos-delay="300">
+                            <p>
+                                Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
+                                id est laborum.
+                            </p>
+                            <a href="#" class="btn-learn-more">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<!-- End About Us Section -->
+
+<!-- feedback -->
+<div class="container-fluid bg-warning vh-100 vw-100">
+    <div class="row ">
+        <div class="col ">
+            <br id="feedback"><br>
+            <div class="container">
+                <h2>Feedback</h2>
+                <form action="/feedback" method="POST">
+
+                    <fieldset>
+                        <div class="mb-3">
+                            <label for="disabledTextInput" class="form-label">Email <span style="color: red;">*</span></label>
+                            <input type="email" id="disabledTextInput" class="form-control" value={{ session[ 'email'] }} name="email" required>
+                        </div>
+                    </fieldset>
+                    <div class="mb-3">
+                        <label for="desc" class="form-label">Message <span style="color: red;">*</span></label>
+                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" name="message" required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-dark">send feedback</button>
+                </form>
+            </div>
+        </div>
+        <div class="col">
+            <br><br>
+            <h3>contact</h3>
+            <p>Lorem ipsum dolor,m suscipit exercitationem natus quod ut, alias nihil. Nam earum odio dolore magni reprehenderit numquam, est expedita?</p>
+            <h6>+91 080 6268289</h6>
+
+            <h6>kumbashi,kundapura</h6>
+            <h6>udupi-562721</h6>
+            <h6>karnataka, India</h6>
+        </div>
+    </div>
+</div>
+<!-- end feedback -->
+
+<!-- complaint -->
+{% if session['name'] %}
+<div class="col bg-light vh-100 ">
+    <br id="compliant"><br>
+    <div class="container my-3 w-75">
+        <form action="/complaint" method="POST">
+            <h2>Rise Compliant</h2>
+
+            <div class="mb-3">
+                <label for="title" class="form-label">Courier id <span style="color: red;">*</span></label>
+                <input type="text" class="form-control" name="cid" id="title" aria-describedby="emailHelp" required>
+            </div>
+            <fieldset disabled>
+                <div class="mb-3">
+                    <label for="disabledTextInput" class="form-label">Email <span style="color: red;">*</span></label>
+                    <input type="email" id="disabledTextInput" class="form-control" value={{ session[ 'email'] }} name="email" required>
+                </div>
+            </fieldset>
+            <div class="mb-3">
+                <label for="desc" class="form-label">compliant <span style="color: red;">*</span></label>
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" name="message" type='text' required></textarea>
+            </div>
+            <button type="submit" class="btn btn-dark">send compliant</button>
+        </form>
+    </div>
+</div>
+{% endif %} {% endblock body %}
